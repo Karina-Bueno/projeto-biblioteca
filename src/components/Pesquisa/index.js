@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
-import { useState } from "react";
-import { livros } from './dadosPesquisa';
+import { useState, useEffect } from "react";
+import { getLivros } from "../../Servico/livros";
 
 const PesquisaContainer = styled.section`
 	background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -40,8 +40,18 @@ const Resultado = styled.div`
 `
 
 function Pesquisa() { //esse componente é encontrado com maior frequencia e basicamente são funções JavaScript 
-	const [livrosPesquisados, setLivrosPesquisados] = useState([])
+	const [livrosPesquisados, setLivrosPesquisados] = useState([]);
+	const [livros, setLivros] = useState([]); //guardando os livros
+
+	useEffect(() => { //pegamos os livros da API e colocamos no nosso estado 
+		fetchLivros()
+	}, [])
 	
+	async function fetchLivros() {
+		const livrosDaAPI = await getLivros()
+		setLivros(livrosDaAPI)
+	}
+
 	return (
 		<PesquisaContainer>
 			<Titulo>Já sabe por onde começar?</Titulo>

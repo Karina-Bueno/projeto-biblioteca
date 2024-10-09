@@ -1,8 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { createGlobalStyle } from 'styled-components';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./Rotas/Home";
+import Favoritos from "./Rotas/Favoritos";
+
 
 const GlobalStyle = createGlobalStyle`
 	body {
@@ -23,12 +27,18 @@ const GlobalStyle = createGlobalStyle`
 		list-style: none;
 	}
 
-`
-const root = ReactDOM.createRoot(document.getElementById('root')); //root utilizado para exibir e manipular os elementos da tela
+`;
+const root = ReactDOM.createRoot(document.getElementById("root")); //root utilizado para exibir e manipular os elementos da tela
 root.render(
-	<React.StrictMode>
-		<GlobalStyle />
-    <App />
+  <React.StrictMode>
+    <GlobalStyle />
+		<BrowserRouter>
+			<Header />
+			<Routes>
+				<Route path="/favoritos" element={<Favoritos />} />
+				<Route path="/" element={<Home />} />
+			</Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
