@@ -9,6 +9,16 @@ async function getFavoritos() { //informamos que a função vai ter códigos ass
 	return response.data;
 } //vai ser retornado todos os livros que fizermos a requisição
 
+async function postFavorito(id) {
+	await favoritosApi.post(`/${id}`);
+}
+
+async function deleteFavorito(id) {
+	await favoritosApi.delete(`/${id}`);
+}
+
 export {
 	getFavoritos,
+	postFavorito,
+	deleteFavorito,
 }

@@ -9,7 +9,7 @@ const AppContainer = styled.div`
 `
 function Home() {
   return (
-		<AppContainer className='App'>
+		<AppContainer>
 			<Pesquisa />
 			<UltimosLancamentos />
     </AppContainer>
